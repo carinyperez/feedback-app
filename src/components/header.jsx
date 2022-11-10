@@ -2,23 +2,24 @@
 import PropTypes from 'prop-types'; 
 
 const defaultProps = {
-	text: 'Feedback UI'
+	text: 'Feedback App'
 }
 
 const propTypes = {
 	text: PropTypes.string
 }
 
-export const Header = ({text}) => {
+const Header = ({text}) => {
 	return (
 		<header>
 			<div className='container'>
-				<h1>My App</h1>
-				<h2>{text}</h2>
+				<h2 style={{color: 'white'}}>{text}</h2>
 			</div>
 		</header>
 	)
 }
+
+export default Header; 
 
 Header.defaultProps = defaultProps; 
 Header.propTypes = propTypes; 
