@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const propTypes = {
 	feedback: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.number.isRequired,
+			id: PropTypes.string.isRequired,
 			text: PropTypes.string.isRequired,
 			rating: PropTypes.number.isRequired,
 		})
