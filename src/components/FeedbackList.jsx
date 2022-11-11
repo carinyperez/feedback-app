@@ -11,13 +11,12 @@ const propTypes = {
 	)
 }
 
-const FeedbackList = ({feedback}) => {
-
+const FeedbackList = ({feedback, handleDelete}) => {
 	return (
 		(!feedback || feedback.length === 0) ? <p>No feedback</p> : 
 		<div>
 			{feedback.map(item => (
-				<FeedbackItem key={item.id} item={item}/>
+				<FeedbackItem key={item.id} item={item} handleDelete={handleDelete}/>
 				)
 		    )}
 		</div>

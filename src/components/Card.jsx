@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types'; 
 
 const defaultProps = {
-	reverse: true
+	reverse: false,
 }
 
-const propTypes= {
+const propTypes = {
 	children: PropTypes.node.isRequired,
 }
 
