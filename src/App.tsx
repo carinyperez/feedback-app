@@ -5,7 +5,10 @@ import FeedbackData from './data/FeedbackData';
 import FeedbackStats from './components/FeedbackStats';
 import FeedbackForm from './components/FeedbackForm';
 import {v4 as uuidv4} from 'uuid'; 
-import React from 'react';
+import * as React from 'react';
+import AboutPage from './pages/AboutPage';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'; 
+import AboutIconLink from './components/AboutIcon';
 
 
 export default function App() {
@@ -25,13 +28,23 @@ export default function App() {
 	}
 
 	return (
-		<>
+		<Router>
 			<Header />
 			<div className='container'>
-				<FeedbackForm handleSubmitFeedback={handleSubmitFeedback}/>
-				<FeedbackStats feedback={feedback}/>
-				<FeedbackList feedback={feedback} handleDelete={handleDelete}/>
-			</div>
-		</>
+				<Routes >
+					<Route path ='/' element = {
+						<>
+						<FeedbackForm handleSubmitFeedback={handleSubmitFeedback}/>
+						<FeedbackStats feedback={feedback}/>
+						<FeedbackList feedback={feedback} handleDelete={handleDelete}/>
+						<AboutIconLink/>
+						</>
+					}>
+					</Route>
+				<Route path='/about' element={
+				<AboutPage/>}/>
+				</Routes>
+			</div>			
+		</Router>
 	)
 }
