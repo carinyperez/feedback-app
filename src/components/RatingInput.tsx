@@ -1,9 +1,14 @@
+import * as React from "react";
 import {useState} from 'react'; 
 
-const RatingInput = ({select}) => {
-	const [selectedRating, setSelectedRating] = useState(); 
+export interface RatingInputProps {
+	select: any,
+}
 
-	const handleChange = (e) => {
+const RatingInput = ({select}: RatingInputProps) => {   
+	const [selectedRating, setSelectedRating] = useState<Number | undefined>(undefined); 
+
+	const handleChange = (e: { currentTarget: { value: any; }; }) => {
 		setSelectedRating(Number(e.currentTarget.value))
 		select(Number(e.currentTarget.value))
 	}
@@ -11,7 +16,7 @@ const RatingInput = ({select}) => {
 	return (
 		<ul className='rating'>
 			{
-				Array.apply(null, {length: 10}).map((el, i)=>(
+				Array.apply(null, {length: 10}).map((el :any, i: any)=>(
 				<li key={i}>			
 				<input
 				type='radio'

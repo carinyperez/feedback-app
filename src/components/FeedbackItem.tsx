@@ -1,12 +1,17 @@
 import Card from './Card'; 
-import PropTypes from 'prop-types'; 
 import {FaTimes} from 'react-icons/fa'; 
+import * as React from "react";
 
-const propTypes = {
-	item: PropTypes.object.isRequired,
+export interface FeedbackItemProps {
+	item: {
+		id: any, 
+		rating: number, 
+		text: string
+	}
+	handleDelete: (id: any) => void,
 }
 
-const FeedbackItem = ({item, handleDelete}) => {
+const FeedbackItem = ({item, handleDelete}: FeedbackItemProps) => {
 	return (
 		<Card>
 			<div className='num-display'>{item.rating}</div>
@@ -18,7 +23,6 @@ const FeedbackItem = ({item, handleDelete}) => {
 	)
 }
 
-FeedbackItem.propTypes = propTypes; 
 
 
 export default FeedbackItem; 

@@ -1,15 +1,14 @@
-
-import PropTypes from 'prop-types'; 
+import * as React from "react";
 
 const defaultProps = {
 	text: 'Feedback App'
 }
 
-const propTypes = {
-	text: PropTypes.string
+export interface HeaderProps {
+	text: string
 }
 
-const Header = ({text}) => {
+const Header = ({text}: HeaderProps) => {
 	return (
 		<header>
 			<div className='container'>
@@ -22,7 +21,7 @@ const Header = ({text}) => {
 export default Header; 
 
 Header.defaultProps = defaultProps; 
-Header.propTypes = propTypes; 
+
 
 
 

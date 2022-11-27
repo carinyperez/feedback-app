@@ -1,7 +1,7 @@
-import React from 'react'; 
-import App from './App'; 
+import App from './App';
 import './index.css'; 
 import {createRoot} from 'react-dom/client'; 
+import * as React from 'react';
 
 
 // React 18 syntax 
@@ -12,3 +12,4 @@ root.render(
 		<App/>
 	</React.StrictMode>
 )
+

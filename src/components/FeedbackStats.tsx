@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'; 
+import * as React from "react";
 
 
-const propTypes = {
-	feedback: PropTypes.array.isRequired
+export interface FeedbackStatsProps {
+	feedback: Array<any>
+
 }
 
-const FeedbackStats = ({feedback}) => {
-
+const FeedbackStats = ({feedback}: FeedbackStatsProps) => {
 	const average = () => {
 		const total = feedback.reduce((acc , curr) => acc + curr.rating, 0)
 		return total/feedback.length; 
@@ -22,6 +22,5 @@ const FeedbackStats = ({feedback}) => {
 	)
 }
 
-FeedbackStats.propTypes = propTypes; 
 
 export default FeedbackStats; 
