@@ -1,17 +1,19 @@
 import Card from './Card'; 
 import {FaTimes} from 'react-icons/fa'; 
 import * as React from "react";
+import { useContext } from 'react';
+import FeedbackContext from '../context/FeedbackContext';
 
 export interface FeedbackItemProps {
 	item: {
-		id: any, 
+		id: string, 
 		rating: number, 
 		text: string
 	}
-	handleDelete: (id: any) => void,
 }
 
-const FeedbackItem = ({item, handleDelete}: FeedbackItemProps) => {
+const FeedbackItem = ({item}: FeedbackItemProps) => {
+	const {handleDelete} = useContext(FeedbackContext);
 	return (
 		<Card>
 			<div className='num-display'>{item.rating}</div>

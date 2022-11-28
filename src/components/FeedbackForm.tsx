@@ -3,13 +3,13 @@ import Card from './Card';
 import Button from './Button'; 
 import RatingInput from './RatingInput';
 import * as React from "react";
+import { useContext } from 'react';
+import FeedbackContext from '../context/FeedbackContext';
 
 
-export interface FeedbackFormProps {
-	handleSubmitFeedback : (text: any, rating: any) => void,
-}
+const FeedbackForm = () => {
 
-const FeedbackForm = ({handleSubmitFeedback} :FeedbackFormProps) => {
+	const {handleSubmitFeedback} = useContext(FeedbackContext)
 	const [review, setReview] = useState(''); 
 	const [btnDisabled, setbtnDisabled] = useState(true); 
 	const [validation, setValidation ] = useState<String | null>(null); 

@@ -1,14 +1,12 @@
 import * as React from "react";
+import {useContext} from 'react'; 
+import FeedbackContext from '../context/FeedbackContext';
 
 
-export interface FeedbackStatsProps {
-	feedback: Array<any>
-
-}
-
-const FeedbackStats = ({feedback}: FeedbackStatsProps) => {
+const FeedbackStats = () => {
+	const {feedback} = useContext(FeedbackContext)
 	const average = () => {
-		const total = feedback.reduce((acc , curr) => acc + curr.rating, 0)
+		const total = feedback.reduce((acc: any , curr: { rating: any; }) => acc + curr.rating, 0)
 		return total/feedback.length; 
 	}		
 

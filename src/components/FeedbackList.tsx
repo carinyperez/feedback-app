@@ -1,23 +1,23 @@
 import FeedbackItem from './FeedbackItem';
 import * as React from "react";
+import {useContext} from 'react'; 
+import FeedbackContext from '../context/FeedbackContext';
 
-export interface Item {
+
+interface Item {
 	id :string, 
-	text : number, 
-	rating :string,
+	text : string,
+	rating : number;
 }
 
-export interface FeedbackListProps { 
-	feedback: any[],
-	handleDelete: (id: any) => void,
-}
+const FeedbackList = () => {
+	const {feedback} = useContext(FeedbackContext);
 
-const FeedbackList = ({feedback, handleDelete}: FeedbackListProps) => {
 	return (
 		(!feedback || feedback.length === 0) ? <p>No feedback</p> : 
 		<div>
-			{feedback.map(item => (
-				<FeedbackItem key={item.id} item={item} handleDelete={handleDelete}/>
+			{feedback.map((item: Item) => (
+				<FeedbackItem key={item.id} item={item} />
 				)
 		    )}
 		</div>
