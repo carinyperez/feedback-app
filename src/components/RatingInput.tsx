@@ -1,12 +1,17 @@
 import * as React from "react";
-import {useState} from 'react'; 
-
+import {useState, useContext, useEffect} from 'react'; 
+import FeedbackContext from '../context/FeedbackContext';
 export interface RatingInputProps {
 	select: any,
 }
 
 const RatingInput = ({select}: RatingInputProps) => {   
 	const [selectedRating, setSelectedRating] = useState<Number | undefined>(undefined); 
+	const {feedbackEdit} = useContext(FeedbackContext);
+
+	useEffect(() => {
+		setSelectedRating(feedbackEdit.item.rating)
+	}, [feedbackEdit])
 
 	const handleChange = (e: { currentTarget: { value: any; }; }) => {
 		setSelectedRating(Number(e.currentTarget.value))

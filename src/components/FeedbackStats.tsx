@@ -7,7 +7,7 @@ const FeedbackStats = () => {
 	const {feedback} = useContext(FeedbackContext)
 	const average = () => {
 		const total = feedback.reduce((acc: any , curr: { rating: any; }) => acc + curr.rating, 0)
-		return total/feedback.length; 
+		return Math.floor(total/feedback.length); 
 	}		
 
 	return (
