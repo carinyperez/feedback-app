@@ -2,6 +2,7 @@ import FeedbackItem from './FeedbackItem';
 import * as React from "react";
 import {useContext} from 'react'; 
 import FeedbackContext from '../context/FeedbackContext';
+import Spinner from '../components/Spinner';
 
 
 interface Item {
@@ -11,10 +12,17 @@ interface Item {
 }
 
 const FeedbackList = () => {
-	const {feedback} = useContext(FeedbackContext);
+	const {feedback, loading} = useContext(FeedbackContext);
+
+	if(!loading && (!feedback || feedback.length === 0)) {
+		return (
+			<p>No feedback yet</p>
+		)
+	}
 
 	return (
-		(!feedback || feedback.length === 0) ? <p>No feedback</p> : 
+		
+		(loading) ? <Spinner/>: 
 		<div>
 			{feedback.map((item: Item) => (
 				<FeedbackItem key={item.id} item={item} />

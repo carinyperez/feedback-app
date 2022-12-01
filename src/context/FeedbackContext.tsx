@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect} from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 interface Item {
@@ -11,27 +11,23 @@ interface Item {
 const FeedbackContext = createContext<any>({});
 
 export const FeedbackProvider = ({ children }: any) => {
-  const [feedback, setFeedback] = useState([
-    {
-      id: '1',
-      text: 'This is feedback item 1',
-      rating: 10,
-    },
-    {
-      id: '2',
-      text: 'This is feedback item 2',
-      rating: 9,
-    },
-    {
-      id: '3',
-      text: 'This is feedback item 3',
-      rating: 7,
-    },
-  ]);
+  const [loading, setLoading] = useState(true);
+  const [feedback, setFeedback] = useState([]);
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
+
+  useEffect(() => {
+    fetchData(); 
+  }, [])
+  
+  const fetchData = async () => {
+    const response = await fetch('http://localhost:5001/feedback?_sort=is&_order=desc');
+    const data = await response.json(); 
+    setFeedback(data)
+    setLoading(false)
+}
 
   const handleDelete = (id: string) => {
     window.confirm('Are you sure you want to delete') &&
@@ -72,11 +68,13 @@ export const FeedbackProvider = ({ children }: any) => {
     };
     setFeedback([newFeedback, ...feedback]);
   };
+
   return (
     <FeedbackContext.Provider
       value={{
         feedback,
         handleEdit,
+        loading,
         handleDelete,
         handleSubmitFeedback,
         feedbackEdit,
